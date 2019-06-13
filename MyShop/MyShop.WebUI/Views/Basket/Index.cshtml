@@ -30,15 +30,15 @@
     <td>
         @Html.DisplayFor(modelTtem => item.ProductName)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        @String.Format("{0:c}", item.Price)
-    </td>
+    <!-- <td>
+         @Html.DisplayFor(modelItem => item.Quantity)
+     </td>
+     <td>
+         @Html.DisplayFor(modelItem => item.Price)
+     </td>
+     <td>
+         @String.Format("{0:c}", item.Price)
+     </td>-->
     <td>
         @String.Format("{0:c}", item.Price * item.Quantity)
     </td>
