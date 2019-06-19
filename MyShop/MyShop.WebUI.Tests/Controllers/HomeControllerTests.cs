@@ -20,9 +20,9 @@ namespace MyShop.WebUI.Tests.Controllers
         {
             //first we need to create instance of our controller
             IRepository<Product> productContext = new Mocks.MockContext<Product>();
-            IRepository<ProductCategory> productCategoryContext = new Mocks.MockContext<ProductCategory>();
+            IRepository<ProductCategory> productCategoryContext = new Mocks.MockContext<ProductCategory>();           
 
-            productContext.Insert(new Product())
+            productContext.Insert(new Product());
 
             HomeController controller = new HomeController(productContext, productCategoryContext);
 

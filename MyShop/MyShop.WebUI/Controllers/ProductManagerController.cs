@@ -13,10 +13,10 @@ namespace MyShop.WebUI.Controllers
 {
     public class ProductManagerController : Controller
     {
-        IRepository<ProductCategories> context;
+        IRepository<Product> context;
         IRepository<ProductCategory> productCategories;
 
-        public ProductManagerController(IRepository<ProductCategories> productContext, IRepository<ProductCategory> productCategoryContext)
+        public ProductManagerController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext)
         {
             context = productContext;
             productCategories = productCategoryContext;
@@ -25,20 +25,20 @@ namespace MyShop.WebUI.Controllers
         // GET: ProductManager
         public ActionResult Index()
         {
-            List<ProductCategories> products = context.Collection().ToList();
+            List<Product> products = context.Collection().ToList();
             return View(products);
         }
 
         public ActionResult Create()
         {
             ProductManagerViewModel viewModel = new ProductManagerViewModel();
-            viewModel.Product = new ProductCategories();
+            viewModel.Product = new Product();
             viewModel.ProductCategories = productCategories.Collection();
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(ProductCategories product, HttpPostedFileBase file)
+        public ActionResult Create(Product product, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace MyShop.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            ProductCategories product = context.Find(Id);
+            Product product = context.Find(Id);
             if(product == null)
             {
                 return HttpNotFound();
@@ -77,9 +77,9 @@ namespace MyShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(ProductCategories product, string Id, HttpPostedFileBase file)
+        public ActionResult Edit(Product product, string Id, HttpPostedFileBase file)
         {
-            ProductCategories productToEdit = context.Find(Id);
+            Product productToEdit = context.Find(Id);
             if (productToEdit == null)
             {
                 return HttpNotFound();
@@ -110,7 +110,7 @@ namespace MyShop.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            ProductCategories productToDelete = context.Find(Id);
+            Product productToDelete = context.Find(Id);
             if (productToDelete == null)
             {
                 return HttpNotFound();
@@ -125,7 +125,7 @@ namespace MyShop.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            ProductCategories productToDelete = context.Find(Id);
+            Product productToDelete = context.Find(Id);
             if (productToDelete == null)
             {
                 return HttpNotFound();

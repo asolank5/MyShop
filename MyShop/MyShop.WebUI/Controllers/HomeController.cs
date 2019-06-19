@@ -11,10 +11,10 @@ namespace MyShop.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        IRepository<ProductCategories> context;
+        IRepository<Product> context;
         IRepository<ProductCategory> productCategories;
 
-        public HomeController(IRepository<ProductCategories> productContext, IRepository<ProductCategory> productCategoryContext)
+        public HomeController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext)
         {
             context = productContext;
             productCategories = productCategoryContext;
@@ -22,7 +22,7 @@ namespace MyShop.WebUI.Controllers
         }
         public ActionResult Index(string Category = null)
         {
-            List<ProductCategories> products;
+            List<Product> products;
             List<ProductCategory> categories = productCategories.Collection().ToList();
 
             if(Category == null)
@@ -44,7 +44,7 @@ namespace MyShop.WebUI.Controllers
 
         public ActionResult Details(string Id)
         {
-            ProductCategories product = context.Find(Id);
+            Product product = context.Find(Id);
 
             if(product == null)
             {
